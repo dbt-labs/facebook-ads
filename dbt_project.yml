@@ -1,0 +1,20 @@
+name: 'facebook-ads'
+version: '1.0'
+
+source-paths: ["models"]   # paths with source code to compile
+analysis-paths: ["analysis"] # path with analysis files which are compiled, but not run
+target-path: "target"      # path for compiled code
+clean-targets: ["target"]  # directories removed by the clean task
+test-paths: ["test"]       # where to store test results
+data-paths: ["data"]       # load CSVs from this directory with `dbt seed`
+
+models:
+  facebook-ads:
+    stitch:
+      enabled: true
+      materialized: view
+    fivetran:
+      enabled: false
+      materialized: view
+
+profile: "casper"

@@ -1,0 +1,18 @@
+facebook_ad_creatives:
+  not_null:
+    - id
+
+facebook_ads:
+  constraints:
+    relationships:
+      - {from: creative_id, to: facebook_ad_creatives, field: id}
+    not_null:
+      - creative_id
+      - id
+
+facebook_ad_insights:
+  constraints:
+    relationships:
+      - {from: ad_id, to: facebook_ads, field: id}
+    not_null:
+      - ad_id
