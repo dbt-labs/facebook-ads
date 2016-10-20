@@ -17,7 +17,7 @@ select
   utm_campaign,
   utm_content,
   utm_term,
-  sum(coalesce(impressions__bigint, nullif(impressions__string, '')::int)) as impressions, --fix!
+  sum(impressions) as impressions,
   sum(spend) as spend,
   sum(website_clicks) as clicks
 from insights
