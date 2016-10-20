@@ -1,0 +1,54 @@
+fb_ad_creatives:
+  constraints:
+    not_null:
+      - id
+    unique:
+      - id
+
+fb_ads:
+  constraints:
+    relationships:
+      - {from: creative_id, to: fb_ad_creatives, field: id}
+    not_null:
+      - creative_id
+      - id
+    unique:
+      - id
+
+fb_ad_insights:
+  constraints:
+    relationships:
+      - {from: ad_id, to: fb_ads, field: id}
+      - {from: campaign_id, to: fb_campaigns, field: id}
+    not_null:
+      - ad_id
+      - campaign_id
+
+fb_campaigns:
+  constraints:
+    not_null:
+      - id
+    unique:
+      - id
+
+fb_insights_segmented:
+  constraints:
+    not_null:
+      - ad_id
+      - campaign_id
+      - segment_type
+      - segment
+    relationships:
+      - {from: ad_id, to: fb_ads, field: id}
+      - {from: campaign_id, to: fb_campaigns, field: id}
+
+
+fb_insights_segmented_xf:
+  constraints:
+    unique:
+      - id
+
+fb_ad_insights_xf:
+  constraints:
+    unique:
+      - id
