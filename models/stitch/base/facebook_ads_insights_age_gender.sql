@@ -1,6 +1,5 @@
 select
-  date_start,
-  date_stop,
+  date_start::date as date_day,
   account_id,
   account_name,
   ad_id,
