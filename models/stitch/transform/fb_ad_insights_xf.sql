@@ -12,6 +12,7 @@ with ads as (
 
 )
 select
+  md5(insights.date_day || '|' || insights.ad_id) as id,
   insights.*,
   creatives.base_url,
   creatives.url,
