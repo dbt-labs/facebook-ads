@@ -8,7 +8,7 @@ with ads as (
 
 ), insights as (
 
-  select * from {{ref('fb_ads_insights_segmented')}}
+  select * from {{ref('fb_insights_segmented')}}
 
 )
 select
