@@ -1,4 +1,4 @@
-select
+select distinct
   id,
   name,
   creative__id as creative_id,
