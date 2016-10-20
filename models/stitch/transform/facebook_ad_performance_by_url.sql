@@ -5,7 +5,7 @@ with insights as (
 )
 
 select
-  date_start::date as insight_date,
+  date_day,
   ad_id,
   campaign_id,
   url,
