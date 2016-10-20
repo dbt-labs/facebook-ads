@@ -13,8 +13,12 @@ models:
     stitch:
       enabled: true
       materialized: view
+      vars:
+        ad_creatives_table:                  #schema.table
+        ads_insights_table:                  #schema.table
+        ads_table:                           #schema.table
+        campaigns_table:                     #schema.table
+        ads_insights_agegender_table:        #schema.table
     fivetran:
       enabled: false
       materialized: view
-
-profile: "casper"
