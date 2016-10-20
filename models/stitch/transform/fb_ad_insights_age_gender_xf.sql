@@ -1,14 +1,14 @@
 with ads as (
 
-  select * from {{ref('facebook_ads')}}
+  select * from {{ref('fb_ads')}}
 
 ), creatives as (
 
-  select * from {{ref('facebook_ad_creatives')}}
+  select * from {{ref('fb_ad_creatives')}}
 
 ), insights as (
 
-  select * from {{ref('facebook_ad_insights')}}
+  select * from {{ref('fb_ads_insights_age_gender')}}
 
 )
 select

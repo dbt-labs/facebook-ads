@@ -1,6 +1,6 @@
 with insights as (
 
-  select * from {{ref('facebook_ad_insights_xf')}}
+  select * from {{ref('fb_ad_insights_xf')}}
 
 )
 
