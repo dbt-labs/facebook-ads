@@ -1,5 +1,5 @@
 select
-  id as campaign_id,
-  name as campaign_name
+  id as id,
+  name as name
 from
   {{ var('campaigns_table') }}
