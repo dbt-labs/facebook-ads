@@ -4,9 +4,10 @@ with base as (
     id,
     url_tags,
     coalesce(
-      object_story_spec__link_data__call_to_action__value__link,
-      object_story_spec__link_data__link,
-      link_url
+      nullif(object_story_spec__link_data__call_to_action__value__link, ''),
+      nullif(object_story_spec__video_data__call_to_action__value__link, ''),
+      nullif(object_story_spec__link_data__link, ''),
+      nullif(link_url, '')
     ) as url
   from
     {{ var('ad_creatives_table') }}
