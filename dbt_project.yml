@@ -14,11 +14,14 @@ models:
       enabled: true
       materialized: view
       vars:
-        ad_creatives_table:                  #schema.table
-        ads_insights_table:                  #schema.table
-        ads_table:                           #schema.table
-        campaigns_table:                     #schema.table
-        ads_insights_agegender_table:        #schema.table
+        facebook_ads_schema:                 #schema
+        ads_table:                           #table
+        ad_creatives_table:                  #table
+        ads_insights_table:                  #table
+        campaigns_table:                     #table
+        ads_insights_agegender_table:        #table
+        ads_insights_placement_device_table: #table
+        ads_insights_country_table:          #table
     fivetran:
       enabled: false
       materialized: view

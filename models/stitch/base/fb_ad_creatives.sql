@@ -10,7 +10,7 @@ with base as (
       nullif(link_url, '')
     ) as url
   from
-    {{ var('ad_creatives_table') }}
+    {{ var('facebook_ads_schema') }}.{{ var('ad_creatives_table') }}
 
 )
 
