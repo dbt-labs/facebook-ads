@@ -6,6 +6,7 @@ with base as (
     coalesce(
       nullif(object_story_spec__link_data__call_to_action__value__link, ''),
       nullif(object_story_spec__video_data__call_to_action__value__link, ''),
+      nullif(object_story_spec__template_data__link, ''),
       nullif(object_story_spec__link_data__link, ''),
       nullif(link_url, '')
     ) as url
