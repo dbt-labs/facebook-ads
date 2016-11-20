@@ -7,4 +7,4 @@ select distinct
   creative__id as creative_id,
   created_time as created_at
 from
-  {{ var('facebook_ads_schema') }}.{{ var('ads_table') }}
+  {{ var('ads_table') }}

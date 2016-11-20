@@ -31,4 +31,4 @@ select
   unique_social_impressions,
   website_clicks
 from
-  {{ var('facebook_ads_schema') }}.{{ var('ads_insights_table') }}
+  {{ var('ads_insights_table') }}
