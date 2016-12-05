@@ -22,5 +22,5 @@ select
   creatives.utm_content,
   creatives.utm_term
 from insights
-  inner join ads on insights.ad_id = ads.id
-  inner join creatives on ads.creative_id = creatives.id
+  left outer join ads on insights.ad_id = ads.id --needed to change this to outer because of missing rows. these shouldn't be missing though.
+  left outer join creatives on ads.creative_id = creatives.id --needed to change this to outer because of missing rows. these shouldn't be missing though.
