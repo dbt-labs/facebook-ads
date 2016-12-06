@@ -18,7 +18,7 @@ fb_ads:
 fb_ad_insights:
   constraints:
     relationships:
-      - {from: ad_id, to: fb_ads, field: id}
+      #- {from: ad_id, to: fb_ads, field: id} this doesn't actually work because of older data that is before the integration was connected
       - {from: campaign_id, to: fb_campaigns, field: id}
     not_null:
       - ad_id
@@ -39,7 +39,7 @@ fb_insights_segmented:
       - segment_type
       - segment
     relationships:
-      - {from: ad_id, to: fb_ads, field: id}
+      # - {from: ad_id, to: fb_ads, field: id} this doesn't actually work because of older data that is before the integration was connected
       - {from: campaign_id, to: fb_campaigns, field: id}
 
 
