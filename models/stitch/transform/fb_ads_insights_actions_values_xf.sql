@@ -9,5 +9,5 @@ select
   md5(date_day || '|' || ad_id) as insights_id,
   action_destination,
   action_type,
-  value as action_value
+  action_value
 from actions
