@@ -13,6 +13,13 @@ with unioned as (
 )
 
 select
-  *,
-  md5(date_day || '|' || ad_id || '|' || segment_type || '|' || segment) as segmented_insight_id
+  md5(date_day || '|' || ad_id || '|' || segment_type || '|' || segment || '|' || id) as id,
+  md5(date_day || '|' || ad_id || '|' || segment_type || '|' || segment) as segmented_insight_id,
+  ad_id,
+  date_day,
+  action_destination,
+  action_type,
+  segment_type,
+  segment,
+  num_actions
 from unioned
