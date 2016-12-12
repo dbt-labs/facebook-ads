@@ -2,7 +2,7 @@ with base as (
 
   select
     id,
-    nullif(url_tags, ''),
+    lower(nullif(url_tags, '')) as url_tags,
     lower(coalesce(
       nullif(object_story_spec__link_data__call_to_action__value__link, ''),
       nullif(object_story_spec__video_data__call_to_action__value__link, ''),
