@@ -2,6 +2,7 @@ with base as (
 
   select
     id,
+    nullif(url_tags, ''),
     lower(coalesce(
       nullif(object_story_spec__link_data__call_to_action__value__link, ''),
       nullif(object_story_spec__video_data__call_to_action__value__link, ''),
@@ -15,9 +16,11 @@ with base as (
 ), splits as (
 
   select
-    *,
+    id,
+    url,
     split_part(url ,'?', 1) as base_url,
-    split_part(url ,'?', 2) as url_tags
+    --this is a strange thing to have to do but it's because sometimes the URL exists on the story object and we wouldn't get the appropriate UTM params here otherwise
+    coalesce(url_tags, split_part(url ,'?', 2)) as url_tags
   from base
 
 )
