@@ -1,4 +1,4 @@
-name: 'facebook-ads'
+name: 'facebook_ads'
 version: '1.0'
 
 source-paths: ["models"]   # paths with source code to compile
