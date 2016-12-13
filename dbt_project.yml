@@ -9,7 +9,7 @@ test-paths: ["test"]       # where to store test results
 data-paths: ["data"]       # load CSVs from this directory with `dbt seed`
 
 models:
-  facebook-ads:
+  facebook_ads:
     stitch:
       vars:
         ads_table:                            #table
