@@ -10,16 +10,25 @@ with unioned as (
   union all
   select * from {{ref('fb_insights_device_actions')}}
 
+), insights as (
+
+  select * from {{ref('fb_insights_segmented_xf')}}
+
 )
 
 select
-  md5(date_day || '|' || ad_id || '|' || segment_type || '|' || segment || '|' || id) as id,
-  md5(date_day || '|' || ad_id || '|' || segment_type || '|' || segment) as segmented_insight_id,
-  ad_id,
-  date_day,
-  action_destination,
-  action_type,
-  segment_type,
-  segment,
-  num_actions
+  md5(insights.id || '|' || unioned.id) as id,
+  insights.id as segmented_insight_id,
+  unioned.ad_id,
+  unioned.date_day,
+  unioned.action_destination,
+  unioned.action_type,
+  unioned.segment_type,
+  unioned.segment,
+  unioned.num_actions
 from unioned
+  inner join insights
+    on unioned.date_day = insights.date_day
+    and unioned.ad_id = insights.ad_id
+    and unioned.segment_type = insights.segment_type
+    and unioned.segment = insights.segment
