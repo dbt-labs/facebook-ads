@@ -1,4 +1,4 @@
-name: 'facebook-ads'
+name: 'facebook_ads'
 version: '1.0'
 
 source-paths: ["models"]   # paths with source code to compile
@@ -9,7 +9,7 @@ test-paths: ["test"]       # where to store test results
 data-paths: ["data"]       # load CSVs from this directory with `dbt seed`
 
 models:
-  facebook-ads:
+  facebook_ads:
     stitch:
       enabled: true
       materialized: view
