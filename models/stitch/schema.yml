@@ -52,3 +52,13 @@ fb_ad_insights_xf:
   constraints:
     unique:
       - id
+
+fb_ads_insights_actions_xf:
+  constraints:
+    not_null:
+      - id
+      - insights_id
+    unique:
+      - id
+    relationships:
+      - {from: insights_id, to: fb_ad_insights_xf, field: id}
