@@ -12,8 +12,13 @@ fb_ads:
     not_null:
       - creative_id
       - id
-    unique:
-      - id
+
+fb_ads_xf:
+    constraints:
+        not_null:
+            - unique_id
+        unique:
+            - unique_id
 
 fb_ad_insights:
   constraints:
@@ -55,9 +60,6 @@ fb_ad_insights_xf:
 
 fb_ads_insights_actions_xf:
   constraints:
-    not_null:
-      - id
-      - insights_id
     unique:
       - id
     relationships:
