@@ -1,9 +1,9 @@
 select
   id,
-  name,
-  account_id,
-  campaign_id,
+  nullif(name,'') as name,
+  nullif(account_id,'') as account_id,
+  nullif(campaign_id,'') as campaign_id,
   created_time,
-  effective_status
+  nullif(effective_status,'') as effective_status
 from
   {{ var('adsets_table') }}
