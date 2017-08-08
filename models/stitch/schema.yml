@@ -64,3 +64,10 @@ fb_ads_insights_actions_xf:
       - id
     relationships:
       - {from: insights_id, to: ref('fb_ad_insights_xf'), field: id}
+
+fb_adsets_xf:
+    constraints:
+        not_null:
+            - id
+        unique:
+            - id

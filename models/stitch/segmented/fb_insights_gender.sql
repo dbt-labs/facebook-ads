@@ -11,7 +11,7 @@ select
   ad_id,
   adset_id,
   campaign_id,
-  objective,
+  max(objective) as objective,
   'gender' as segment_type,
   gender as segment,
   sum(impressions) as impressions,
@@ -29,4 +29,4 @@ select
 from
   age_gender
 group by
-  1, 2, 3, 4, 5, 6, 7, 8, 9
+  1, 2, 3, 4, 5, 6, 8, 9
