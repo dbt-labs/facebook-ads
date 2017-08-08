@@ -28,4 +28,5 @@ models:
         ads_insights_c_actions_table:           #table
         ads_insights_pd_actions_values_table:   #table
         ads_insights_pd_actions_table:          #table
+    fivetran:
       enabled: false
