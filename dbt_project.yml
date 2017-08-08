@@ -18,7 +18,7 @@ models:
         campaigns_table:                        #table
         ads_insights_table:                     #table
         ads_insights_agegender_table:           #table
-        ads_insights_placement_device_table:    #table
+        ads_insights_platform_device_table:     #table
         ads_insights_country_table:             #table
         ads_insights_actions_table:             #table
         ads_insights_actions_values_table:      #table
