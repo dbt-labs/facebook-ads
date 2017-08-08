@@ -10,8 +10,8 @@ select
   date_day,
   action_destination,
   action_type,
-  'device' as segment_type,
-  device as segment,
+  'platform' as segment_type,
+  platform as segment,
   sum(action_value) as action_value
 from
   platform_device

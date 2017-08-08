@@ -1,6 +1,6 @@
-with placement_device as (
+with platform_device as (
 
-  select * from {{ref('fb_ads_insights_placement_device')}}
+  select * from {{ref('fb_ads_insights_platform_device')}}
 
 )
 
@@ -27,6 +27,6 @@ select
   sum(total_actions) as total_actions,
   sum(website_clicks) as website_clicks
 from
-  placement_device
+  platform_device
 group by
   1, 2, 3, 4, 5, 6, 7, 8, 9

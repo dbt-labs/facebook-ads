@@ -14,6 +14,10 @@ with country as (
 
   select * from {{ref('fb_insights_placements')}}
 
+), platform as (
+
+  select * from {{ref('fb_insights_platforms')}}
+
 ), device as (
 
   select * from {{ref('fb_insights_devices')}}
@@ -27,5 +31,7 @@ union all
 select * from gender
 union all
 select * from placement
+union all
+select * from platform
 union all
 select * from device
