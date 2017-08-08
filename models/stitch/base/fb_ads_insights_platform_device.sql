@@ -5,10 +5,10 @@ select
   nullif(ad_id,'') as ad_id,
   nullif(adset_id,'') as adset_id,
   nullif(campaign_id,'') as campaign_id,
-  nullif(placement,'') as placement,
+  nullif(platform_position,'') as placement,
+  nullif(publisher_platform,'') as platform,
   nullif(impression_device,'') as device,
   impressions,
-  unique_impressions,
   clicks,
   unique_clicks,
   spend,
@@ -30,7 +30,6 @@ select
   total_unique_actions,
   unique_inline_link_clicks,
   unique_social_clicks,
-  unique_social_impressions,
   website_clicks
 from
   {{ var('ads_insights_placement_device_table') }}

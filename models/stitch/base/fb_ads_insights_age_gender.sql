@@ -8,7 +8,6 @@ select
   nullif(age,'') as age,
   nullif(gender,'') as gender,
   impressions,
-  unique_impressions,
   clicks,
   unique_clicks,
   spend,
@@ -18,8 +17,6 @@ select
   app_store_clicks,
   call_to_action_clicks,
   deeplink_clicks,
-  canvas_avg_view_percent,
-  canvas_avg_view_time,
   inline_link_clicks,
   inline_post_engagement,
   social_clicks,
@@ -30,7 +27,6 @@ select
   total_unique_actions,
   unique_inline_link_clicks,
   unique_social_clicks,
-  unique_social_impressions,
   website_clicks
 from
   {{ var('ads_insights_agegender_table') }}

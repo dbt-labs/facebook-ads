@@ -12,21 +12,21 @@ models:
   facebook_ads:
     stitch:
       vars:
-        ads_table:                            #table
-        ad_creatives_table:                   #table
-        adsets_table:                         #table
-        campaigns_table:                      #table
-        ads_insights_table:                   #table
-        ads_insights_agegender_table:         #table
-        ads_insights_placement_device_table:  #table
-        ads_insights_country_table:           #table
-        ads_insights_actions_table:           #table
-        ads_insights_actions_values_table:    #table
-        ads_insights_ag_actions_values_table: #table
-        ads_insights_ag_actions_table:        #table
-        ads_insights_c_actions_values_table:  #table
-        ads_insights_c_actions_table:         #table
-        ads_insights_pd_actions_values_table: #table
-        ads_insights_pd_actions_table:        #table
+        ads_table:                              #table
+        ad_creatives_table:                     #table
+        adsets_table:                           #table
+        campaigns_table:                        #table
+        ads_insights_table:                     #table
+        ads_insights_agegender_table:           #table
+        ads_insights_placement_device_table:    #table
+        ads_insights_country_table:             #table
+        ads_insights_actions_table:             #table
+        ads_insights_actions_values_table:      #table
+        ads_insights_ag_actions_values_table:   #table
+        ads_insights_ag_actions_table:          #table
+        ads_insights_c_actions_values_table:    #table
+        ads_insights_c_actions_table:           #table
+        ads_insights_pd_actions_values_table:   #table
+        ads_insights_pd_actions_table:          #table
     fivetran:
       enabled: false

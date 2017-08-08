@@ -7,7 +7,6 @@ select
   nullif(campaign_id,'') as campaign_id,
   nullif(country,'') as country,
   impressions,
-  unique_impressions,
   clicks,
   unique_clicks,
   spend,
@@ -29,7 +28,6 @@ select
   total_unique_actions,
   unique_inline_link_clicks,
   unique_social_clicks,
-  unique_social_impressions,
   website_clicks
 from
   {{ var('ads_insights_country_table') }}
