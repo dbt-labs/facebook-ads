@@ -1,0 +1,24 @@
+fb_insights_segmented:
+    constraints:
+        not_null:
+            - ad_id
+            - campaign_id
+            - segment_type
+            - segment
+        relationships:
+            # - {from: ad_id, to: fb_ads, field: id} this doesn't actually work because of older data that is before the integration was connected
+            - {from: campaign_id, to: ref('fb_campaigns'), field: id}
+
+fb_insights_segmented_xf:
+    constraints:
+        unique:
+            - id
+
+
+
+fb_ads_insights_actions_xf:
+    constraints:
+        unique:
+            - id
+        relationships:
+            - {from: insights_id, to: ref('fb_ad_insights_xf'), field: id}
