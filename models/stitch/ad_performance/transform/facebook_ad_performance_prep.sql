@@ -14,4 +14,3 @@ select
     'facebook ads'::varchar as ad_data_source
     
 from {{ref('fb_ad_insights_xf')}}
-where utm_medium<>'' and utm_medium is not null
