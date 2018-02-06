@@ -13,7 +13,6 @@ select
   reach,
   nullif(objective,'') as objective,
   call_to_action_clicks,
-  deeplink_clicks,
   canvas_avg_view_percent,
   canvas_avg_view_time,
   inline_link_clicks,
@@ -25,7 +24,6 @@ select
   total_actions,
   total_unique_actions,
   unique_inline_link_clicks,
-  unique_social_clicks,
-  website_clicks
+  unique_social_clicks
 from
   {{ var('ads_insights_table') }}
