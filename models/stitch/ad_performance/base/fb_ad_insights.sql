@@ -12,7 +12,6 @@ select
   frequency,
   reach,
   nullif(objective,'') as objective,
-  app_store_clicks,
   call_to_action_clicks,
   deeplink_clicks,
   canvas_avg_view_percent,
