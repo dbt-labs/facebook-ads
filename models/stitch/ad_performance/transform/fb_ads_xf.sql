@@ -1,6 +1,6 @@
 with ads as (
 
-  select * from {{ref('fb_ads')}}
+  select * from {{ref('FB_ADS')}}
 
 ), d1 as (
 

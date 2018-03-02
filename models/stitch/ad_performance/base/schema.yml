@@ -1,11 +1,11 @@
-fb_ad_creatives:
+FB_AD_CREATIVES:
   constraints:
     not_null:
       - id
     unique:
       - id
 
-fb_ads:
+FB_ADS:
   constraints:
     relationships:
       - {from: creative_id, to: ref('fb_ad_creatives'), field: id}
@@ -13,7 +13,7 @@ fb_ads:
       - creative_id
       - id
 
-fb_ad_insights:
+FB_AD_INSIGHTS:
   constraints:
     relationships:
       #- {from: ad_id, to: fb_ads, field: id} this doesn't actually work because of older data that is before the integration was connected
@@ -22,7 +22,7 @@ fb_ad_insights:
       - ad_id
       - campaign_id
 
-fb_campaigns:
+FB_CAMPAIGNS:
   constraints:
     not_null:
       - id

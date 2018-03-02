@@ -1,6 +1,6 @@
 with placement_device as (
 
-  select * from {{ref('fb_ads_insights_c_actions_values')}}
+  select * from {{ref('FB_ADS_INSIGHTS_C_ACTIONS_VALUES')}}
 
 )
 

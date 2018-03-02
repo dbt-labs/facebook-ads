@@ -9,7 +9,7 @@ with base as (
       nullif(object_story_spec__link_data__link, '')
     )) as url
   from
-    {{ var('ad_creatives_table') }}
+    {{ var('AD_CREATIVES_TABLE') }}
 
 ), splits as (
 

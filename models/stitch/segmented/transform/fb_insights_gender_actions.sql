@@ -1,6 +1,6 @@
 with age_gender as (
 
-  select * from {{ref('fb_ads_insights_ag_actions')}}
+  select * from {{ref('FB_ADS_INSIGHTS_AG_ACTIONS')}}
 
 )
 

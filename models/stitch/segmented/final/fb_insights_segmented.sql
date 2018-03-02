@@ -1,26 +1,26 @@
 with country as (
 
-  select * from {{ref('fb_insights_country')}}
+  select * from {{ref('FB_INSIGHTS_COUNTRY')}}
 
 ), age as (
 
-  select * from {{ref('fb_insights_age')}}
+  select * from {{ref('FB_INSIGHTS_AGE')}}
 
 ), gender as (
 
-  select * from {{ref('fb_insights_gender')}}
+  select * from {{ref('FB_INSIGHTS_GENDER')}}
 
 ), placement as (
 
-  select * from {{ref('fb_insights_placements')}}
+  select * from {{ref('FB_INSIGHTS_PLACEMENTS')}}
 
 ), platform as (
 
-  select * from {{ref('fb_insights_platforms')}}
+  select * from {{ref('FB_INSIGHTS_PLATFORMS')}}
 
 ), device as (
 
-  select * from {{ref('fb_insights_devices')}}
+  select * from {{ref('FB_INSIGHTS_DEVICES')}}
 
 )
 

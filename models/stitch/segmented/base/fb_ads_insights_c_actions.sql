@@ -1,6 +1,6 @@
 with actions as (
 
-  select * from {{ var('ads_insights_c_actions_table') }}
+  select * from {{ var('ADS_INSIGHTS_C_ACTIONS_TABLE') }}
 
 )
 

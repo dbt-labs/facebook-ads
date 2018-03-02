@@ -1,10 +1,10 @@
 with actions as (
 
-  select * from {{ref('fb_ads_insights_actions')}}
+  select * from {{ref('FB_ADS_INSIGHTS_ACTIONS')}}
 
 ), insights as (
 
-  select * from {{ref('fb_ad_insights_xf')}}
+  select * from {{ref('FB_AD_INSIGHTS_XF')}}
 
 )
 

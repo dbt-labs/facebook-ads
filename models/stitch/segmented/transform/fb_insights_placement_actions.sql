@@ -1,6 +1,6 @@
 with platform_device as (
 
-  select * from {{ref('fb_ads_insights_pd_actions')}}
+  select * from {{ref('FB_ADS_INSIGHTS_PD_ACTIONS')}}
 
 )
 

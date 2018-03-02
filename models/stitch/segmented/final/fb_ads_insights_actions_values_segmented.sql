@@ -1,18 +1,18 @@
 with unioned as (
 
-  select * from {{ref('fb_insights_age_actions_values')}}
+  select * from {{ref('FB_INSIGHTS_AGE_ACTIONS_VALUES')}}
   union all
-  select * from {{ref('fb_insights_gender_actions_values')}}
+  select * from {{ref('FB_INSIGHTS_GENDER_ACTIONS_VALUES')}}
   union all
-  select * from {{ref('fb_insights_country_actions_values')}}
+  select * from {{ref('FB_INSIGHTS_COUNTRY_ACTIONS_VALUES')}}
   union all
-  select * from {{ref('fb_insights_placement_actions_values')}}
+  select * from {{ref('FB_INSIGHTS_PLACEMENT_ACTIONS_VALUES')}}
   union all
-  select * from {{ref('fb_insights_device_actions_values')}}
+  select * from {{ref('FB_INSIGHTS_DEVICE_ACTIONS_VALUES')}}
 
 ), insights as (
 
-  select * from {{ref('fb_insights_segmented_xf')}}
+  select * from {{ref('FB_INSIGHTS_SEGMENTED_XF')}}
 
 )
 

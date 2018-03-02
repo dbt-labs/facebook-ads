@@ -1,22 +1,22 @@
 with ads as (
 
-  select * from {{ref('fb_ads_xf')}}
+  select * from {{ref('FB_ADS_XF')}}
 
 ), creatives as (
 
-  select * from {{ref('fb_ad_creatives')}}
+  select * from {{ref('FB_AD_CREATIVES')}}
 
 ), insights as (
 
-  select * from {{ref('fb_ad_insights')}}
+  select * from {{ref('FB_AD_INSIGHTS')}}
 
 ), campaigns as (
 
-  select * from {{ref('fb_campaigns')}}
+  select * from {{ref('FB_CAMPAIGNS')}}
 
 ), adsets as (
 
-  select * from {{ref('fb_adsets_xf')}}
+  select * from {{ref('FB_ADSETS_XF')}}
 
 ), final as (
 

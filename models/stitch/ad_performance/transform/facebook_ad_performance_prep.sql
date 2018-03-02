@@ -12,5 +12,5 @@ select
     spend,
     impressions,
     'facebook ads'::varchar as ad_data_source
-    
-from {{ref('fb_ad_insights_xf')}}
+
+from {{ref('FB_AD_INSIGHTS_XF')}}

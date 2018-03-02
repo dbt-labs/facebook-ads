@@ -1,6 +1,6 @@
 with countries as (
 
-  select * from {{ref('fb_ads_insights_c_actions')}}
+  select * from {{ref('FB_ADS_INSIGHTS_C_ACTIONS')}}
 
 )
 

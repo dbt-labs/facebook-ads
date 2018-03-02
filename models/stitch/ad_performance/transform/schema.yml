@@ -1,16 +1,16 @@
-fb_ads_xf:
+FB_ADS_XF:
     constraints:
         not_null:
             - unique_id
         unique:
             - unique_id
 
-fb_ad_insights_xf:
+FB_AD_INSIGHTS_XF:
     constraints:
         unique:
             - id
 
-fb_adsets_xf:
+FB_ADSETS_XF:
     constraints:
         not_null:
             - id

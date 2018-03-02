@@ -1,4 +1,4 @@
-fb_insights_segmented:
+FB_INSIGHTS_SEGMENTED:
     constraints:
         not_null:
             - ad_id
@@ -9,14 +9,14 @@ fb_insights_segmented:
             # - {from: ad_id, to: fb_ads, field: id} this doesn't actually work because of older data that is before the integration was connected
             - {from: campaign_id, to: ref('fb_campaigns'), field: id}
 
-fb_insights_segmented_xf:
+FB_INSIGHTS_SEGMENTED_XF:
     constraints:
         unique:
             - id
 
 
 
-fb_ads_insights_actions_xf:
+FB_ADS_INSIGHTS_ACTIONS_XF:
     constraints:
         unique:
             - id

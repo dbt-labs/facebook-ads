@@ -30,4 +30,4 @@ select
   unique_social_clicks,
   website_clicks
 from
-  {{ var('ads_insights_country_table') }}
+  {{ var('ADS_INSIGHTS_COUNTRY_TABLE') }}
