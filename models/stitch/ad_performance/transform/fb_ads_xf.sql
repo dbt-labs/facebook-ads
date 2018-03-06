@@ -6,8 +6,8 @@ with ads as (
 
   select
     *,
-    count(*) over (partition by id rows between unbounded preceding and unbounded following) as num_versions,
-    count(*) over (partition by id order by updated_at rows between unbounded preceding and current row) as version_number
+    count(*) over (partition by id) as num_versions,
+    row_number() over (partition by id order by updated_at rows between unbounded preceding and current row) as version_number
   from ads
 
 )

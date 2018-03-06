@@ -32,4 +32,4 @@ select
   unique_social_clicks,
   website_clicks
 from
-  {{ var('ADS_INSIGHTS_PLATFORM_DEVICE_TABLE') }}
+  {{ var('ads_insights_platform_device_table') }}

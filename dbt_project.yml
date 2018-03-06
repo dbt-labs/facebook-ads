@@ -16,6 +16,7 @@ models:
       segmented:
         enabled: false
       vars:
+        facebook:use_snowflake_adapter: false
         ##ad performance vars
         ads_table:                              #table
         ad_creatives_table:                     #table

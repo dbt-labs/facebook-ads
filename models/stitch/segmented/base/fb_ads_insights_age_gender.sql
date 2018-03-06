@@ -29,4 +29,4 @@ select
   unique_social_clicks,
   website_clicks
 from
-  {{ var('ADS_INSIGHTS_AGEGENDER_TABLE') }}
+  {{ var('ads_insights_agegender_table') }}

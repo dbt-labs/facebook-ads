@@ -1,17 +1,29 @@
 with base as (
 
-  select
-    id,
-    lower(nullif(url_tags, '')) as url_tags,
-    lower(coalesce(
-      nullif(object_story_spec__link_data__call_to_action__value__link, ''),
-      nullif(object_story_spec__video_data__call_to_action__value__link, ''),
-      nullif(object_story_spec__link_data__link, '')
-    )) as url
-  from
-    {{ var('AD_CREATIVES_TABLE') }}
+    select
+        id,
+        lower(nullif(url_tags, '')) as url_tags,
+        lower(coalesce(
+        nullif(object_story_spec__link_data__call_to_action__value__link, ''),
+        nullif(object_story_spec__video_data__call_to_action__value__link, ''),
+        nullif(object_story_spec__link_data__link, '')
+        )) as url
 
-), splits as (
+    from
+
+  {% if var('facebook:use_snowflake_adapter') %}
+ 
+        {{ref('FB_ADCREATIVE_SNOWFLAKE_ADAPTER')}}
+
+  {% else %}
+
+        {{ var('ad_creatives_table') }}
+
+  {% endif %}
+
+),
+
+splits as (
 
   select
     id,

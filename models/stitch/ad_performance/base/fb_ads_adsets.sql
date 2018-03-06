@@ -6,4 +6,4 @@ select
   created_time,
   nullif(effective_status,'') as effective_status
 from
-  {{ var('ADSETS_TABLE') }}
+  {{ var('adsets_table') }}

@@ -26,4 +26,4 @@ select
   unique_inline_link_clicks,
   unique_social_clicks
 from
-  {{ var('ADS_INSIGHTS_TABLE') }}
+  {{ var('ads_insights_table') }}

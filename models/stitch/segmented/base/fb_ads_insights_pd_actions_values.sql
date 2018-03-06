@@ -1,6 +1,6 @@
 with actions as (
 
-  select * from {{ var('ADS_INSIGHTS_PD_ACTIONS_VALUES_TABLE') }}
+  select * from {{ var('ads_insights_pd_actions_values_table') }}
 
 )
 
