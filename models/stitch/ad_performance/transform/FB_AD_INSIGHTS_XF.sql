@@ -1,4 +1,4 @@
-with ads as (
+with ads_base as (
 
   select * from {{ref('FB_ADS_XF')}}
 
@@ -21,7 +21,7 @@ with ads as (
 ), final as (
 
     select
-        md5(insights.date_day || '|' || ads.unique_id) as id,
+        md5(insights.date_day || '|' || ads_base.unique_id) as id,
         insights.*,
         creatives.base_url,
         creatives.url,
@@ -30,16 +30,16 @@ with ads as (
         creatives.utm_campaign,
         creatives.utm_content,
         creatives.utm_term,
-        ads.unique_id as ad_unique_id,
-        ads.name as ad_name,
+        ads_base.unique_id as ad_unique_id,
+        ads_base.name as ad_name,
         campaigns.name as campaign_name,
         adsets.name as adset_name
     from insights
-    left outer join ads
-        on insights.ad_id = ads.id
-        and insights.date_day >= date_trunc('day', ads.effective_from)::date
-        and (insights.date_day < date_trunc('day', ads.effective_to)::date or ads.effective_to is null)
-    left outer join creatives on ads.creative_id = creatives.id
+    left outer join ads_base
+        on insights.ad_id = ads_base.id
+        and insights.date_day >= date_trunc('day', ads_base.effective_from)::date
+        and (insights.date_day < date_trunc('day', ads_base.effective_to)::date or ads_base.effective_to is null)
+    left outer join creatives on ads_base.creative_id = creatives.id
     left outer join campaigns on campaigns.id = insights.campaign_id
     left outer join adsets on adsets.id = insights.adset_id
 --these have to be an outer join because while the stitch integration goes

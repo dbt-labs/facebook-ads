@@ -1,4 +1,4 @@
-with base as (
+with adcreatives_base as (
 
     select
         id,
@@ -31,7 +31,7 @@ splits as (
     split_part(url ,'?', 1) as base_url,
     --this is a strange thing to have to do but it's because sometimes the URL exists on the story object and we wouldn't get the appropriate UTM params here otherwise
     coalesce(url_tags, split_part(url ,'?', 2)) as url_tags
-  from base
+  from adcreatives_base
 
 )
 
