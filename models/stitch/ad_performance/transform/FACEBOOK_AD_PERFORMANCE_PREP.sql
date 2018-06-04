@@ -1,5 +1,7 @@
 select
 
+    md5(date_day::varchar || utm_medium::varchar || utm_source::varchar ||
+        utm_campaign::varchar || utm_term::varchar || utm_content::varchar) as id,
     date_day,
     nullif(utm_medium,'') as utm_medium,
     nullif(utm_source,'') as utm_source,
