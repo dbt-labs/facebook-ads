@@ -1,13 +1,13 @@
 {% set partition_clause = "partition by id order by effective_status rows
     between unbounded preceding and unbounded following" %}
 
-with adsets as (
+with adsets_xf_adsets as (
 
     select  * from {{ref('fb_ads_adsets')}}
 
 ),
 
-rollup as (
+adsets_xf_rollup as (
 
     select distinct
         id,
@@ -17,8 +17,8 @@ rollup as (
         first_value(created_time) over ({{partition_clause}}) as created_time,
         first_value(effective_status) over ({{partition_clause}})
             as effective_status
-    from adsets
+    from adsets_xf_adsets
 
 )
 
-select * from rollup
+select * from adsets_xf_rollup
