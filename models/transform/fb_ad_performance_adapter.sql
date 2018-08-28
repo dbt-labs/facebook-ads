@@ -8,8 +8,8 @@ bing_keyword_performance_agg as (
 
     select 
         date_day as campaign_date,
-        parse_url(url)['host']::varchar as url_host,
-        '/' || parse_url(url)['path']::varchar as url_path,
+        url_host,
+        url_path,
         utm_source,
         utm_medium,
         utm_campaign,

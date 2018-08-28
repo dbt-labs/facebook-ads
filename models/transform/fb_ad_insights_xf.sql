@@ -25,6 +25,8 @@ with ads as (
         insights.*,
         creatives.base_url,
         creatives.url,
+        creatives.url_host,
+        creatives.url_path,
         creatives.utm_medium,
         creatives.utm_source,
         creatives.utm_campaign,
