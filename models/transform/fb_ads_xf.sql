@@ -7,7 +7,7 @@ with ads_xf_ads as (
   select
     *,
     count(*) over (partition by id) as num_versions,
-    row_number() over (partition by id order by updated_at rows between unbounded preceding and current row) as version_number
+    row_number() over (partition by id order by updated_at) as version_number
   from ads_xf_ads
 
 )
