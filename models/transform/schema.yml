@@ -1,18 +1,22 @@
-fb_ads_xf:
-    constraints:
-        not_null:
-            - unique_id
-        unique:
-            - unique_id
+version: 2
 
-fb_ad_insights_xf:
-    constraints:
-        unique:
-            - id
+models:
+  - name: fb_ads_xf
+    columns:
+        - name: unique_id
+          tests:
+              - unique
+              - not_null
 
-fb_adsets_xf:
-    constraints:
-        not_null:
-            - id
-        unique:
-            - id
+  - name: fb_ad_insights_xf
+    columns:
+        - name: id
+          tests:
+              - unique
+
+  - name: fb_adsets_xf
+    columns:
+        - name: id
+          tests:
+              - unique
+              - not_null

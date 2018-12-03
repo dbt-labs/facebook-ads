@@ -26,7 +26,7 @@ fb_keyword_performance_agg as (
         sum(spend) as spend
         
     from fb_keyword_performance
-    group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+    {{ dbt_utils.group_by(13) }}
     
 )
 
