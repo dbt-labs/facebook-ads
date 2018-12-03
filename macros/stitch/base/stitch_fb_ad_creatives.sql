@@ -74,6 +74,7 @@ with base as (
 parsed as (
 
     select
+    
         id,
         url,
         split_part(url, '?', 1) as base_url,
@@ -84,6 +85,7 @@ parsed as (
         nullif(parse_url(url)['parameters']['utm_medium']::varchar, '') as utm_medium,
         nullif(parse_url(url)['parameters']['utm_content']::varchar, '') as utm_content,
         nullif(parse_url(url)['parameters']['utm_term']::varchar, '') as utm_term
+        
     from base 
 
 )
