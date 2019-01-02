@@ -50,7 +50,7 @@ select
     spend,
     frequency,
     reach,
-    objective as objective,
+    objective,
     canvas_avg_view_percent,
     canvas_avg_view_time,
     inline_link_clicks,

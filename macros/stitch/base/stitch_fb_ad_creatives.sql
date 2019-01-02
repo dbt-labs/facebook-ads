@@ -41,13 +41,13 @@ with base as (
 select
 
     *,
+    {{ dbt_utils.split_part('url') }} as url_host,
     '/' || split_part(split_part(split_part(url, '//', 2), '/', 2), '?', 1) as url_path,
-    split_part(split_part(url, '//', 2), '/', 1) as url_host,
     {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
     {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
     {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
     {{ dbt_utils.get_url_parameter('url', 'utm_content') }} as utm_content,
-    {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term,
+    {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term
     
 from splits
 
@@ -78,13 +78,13 @@ parsed as (
         id,
         url,
         split_part(url, '?', 1) as base_url,
-        parse_url(url)['host']::varchar as url_host,
+        {{ dbt_utils.split_part('url') }} as url_host,
         '/' || parse_url(url)['path']::varchar as url_path,
-        nullif(parse_url(url)['parameters']['utm_campaign']::varchar, '') as utm_campaign,
-        nullif(parse_url(url)['parameters']['utm_source']::varchar, '') as utm_source,
-        nullif(parse_url(url)['parameters']['utm_medium']::varchar, '') as utm_medium,
-        nullif(parse_url(url)['parameters']['utm_content']::varchar, '') as utm_content,
-        nullif(parse_url(url)['parameters']['utm_term']::varchar, '') as utm_term
+        {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
+        {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
+        {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
+        {{ dbt_utils.get_url_parameter('url', 'utm_content') }} as utm_content,
+        {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term
         
     from base 
 
