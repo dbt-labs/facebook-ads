@@ -28,11 +28,11 @@ with base as (
     
         id,
         url,
-        split_part(url ,'?', 1) as base_url,
+        {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         --this is a strange thing to have to do but it's because sometimes 
         --the URL exists on the story object and we wouldn't get the appropriate 
         --UTM params here otherwise
-    coalesce(url_tags, split_part(url ,'?', 2)) as url_tags
+        coalesce(url_tags, {{ dbt_utils.split_part('url', "'?'", 2) }} ) as url_tags
     
     from base
 
@@ -41,7 +41,7 @@ with base as (
 select
 
     *,
-    {{ dbt_utils.split_part('url') }} as url_host,
+    {{ dbt_utils.get_url_host('url') }} as url_host,
     '/' || split_part(split_part(split_part(url, '//', 2), '/', 2), '?', 1) as url_path,
     {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
     {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
@@ -77,8 +77,8 @@ parsed as (
     
         id,
         url,
-        split_part(url, '?', 1) as base_url,
-        {{ dbt_utils.split_part('url') }} as url_host,
+        {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
+        {{ dbt_utils.get_url_host('url') }} as url_host,
         '/' || parse_url(url)['path']::varchar as url_path,
         {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
         {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
