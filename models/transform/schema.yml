@@ -1,22 +1,19 @@
 version: 2
-
 models:
-  - name: fb_ads_xf
-    columns:
-        - name: unique_id
-          tests:
-              - unique
-              - not_null
-
-  - name: fb_ad_insights_xf
-    columns:
-        - name: id
-          tests:
-              - unique
-
-  - name: fb_adsets_xf
-    columns:
-        - name: id
-          tests:
-              - unique
-              - not_null
+- name: fb_ads_xf
+  columns:
+  - name: unique_id
+    tests:
+    - not_null
+    - unique
+- name: fb_ad_insights_xf
+  columns:
+  - name: id
+    tests:
+    - unique
+- name: fb_adsets_xf
+  columns:
+  - name: id
+    tests:
+    - not_null
+    - unique
