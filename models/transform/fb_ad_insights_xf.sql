@@ -21,7 +21,8 @@ with ads as (
 ), final as (
 
     select
-        md5(insights.date_day || '|' || ads.unique_id) as id,
+    
+        {{ dbt_utils.surrogate_key('insights.date_day', 'ads.unique_id') }} as id,
         insights.*,
         creatives.base_url,
         creatives.url,
@@ -36,6 +37,7 @@ with ads as (
         ads.name as ad_name,
         campaigns.name as campaign_name,
         adsets.name as adset_name
+        
     from insights
     left outer join ads
         on insights.ad_id = ads.id
