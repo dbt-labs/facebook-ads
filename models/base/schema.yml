@@ -34,3 +34,9 @@ models:
     tests:
     - not_null
     - unique
+- name: fb_url_tag
+  columns:
+  - name: creative_id
+    tests:
+    - not_null
+    - unique

@@ -41,6 +41,7 @@ select
   split_part(split_part(url_tags,'utm_campaign=',2), '&', 1) as utm_campaign,
   split_part(split_part(url_tags,'utm_content=',2), '&', 1) as utm_content,
   split_part(split_part(url_tags,'utm_term=',2), '&', 1) as utm_term
+  
 from splits
 
 {% endmacro %}
@@ -76,6 +77,7 @@ parsed as (
         nullif(parse_url(url)['parameters']['utm_medium']::varchar, '') as utm_medium,
         nullif(parse_url(url)['parameters']['utm_content']::varchar, '') as utm_content,
         nullif(parse_url(url)['parameters']['utm_term']::varchar, '') as utm_term
+
     from base 
 
 )

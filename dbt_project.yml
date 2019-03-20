@@ -12,8 +12,10 @@ models:
   facebook_ads:
     stitch:
       vars:
+        etl:   #stitch or fivetran
         ads_table:                              #table
         ad_creatives_table:                     #table
-        adsets_table:                           #table
-        campaigns_table:                        #table
-        ads_insights_table:                     #table
+        adsets_table:                          #table
+        campaigns_table:                    #table
+        ads_insights_table:                    #table
+        url_tag_table:  #only for fivetran

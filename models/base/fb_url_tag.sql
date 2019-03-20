@@ -1,5 +1,5 @@
 {% if var('etl') == 'stitch' %}
-{{ stitch_fb_ads_adsets() }}
+-- no url_tag table in stitch 
 {% elif var('etl') == 'fivetran'%}
-{{ fivetran_fb_ads_adsets() }}
+{{ fivetran_fb_url_tag() }}
 {% endif %}
