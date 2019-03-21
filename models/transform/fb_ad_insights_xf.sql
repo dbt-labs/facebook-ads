@@ -36,6 +36,7 @@ with ads as (
         ads.name as ad_name,
         campaigns.name as campaign_name,
         adsets.name as adset_name
+
     from insights
     left outer join ads
         on insights.ad_id = ads.ad_id
