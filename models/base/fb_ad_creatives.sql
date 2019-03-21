@@ -1,5 +1,7 @@
 {% if var('etl') == 'stitch' %}
+
 {{ stitch_fb_ad_creatives() }}
+
 {% elif var('etl') == 'fivetran'%}
 
 with creatives as (

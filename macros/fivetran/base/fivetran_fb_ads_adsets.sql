@@ -6,18 +6,18 @@
 
 
 {% macro default__fivetran_fb_ads_adsets() %}
-with final as (
-    select
+
+select
+
+    id as adset_id,
+    nullif(name,'') as name,
+    nullif(account_id,'') as account_id,
+    nullif(campaign_id,'') as campaign_id,
+    created_time,
+    nullif(effective_status,'') as effective_status
     
-        id as adset_id,
-        nullif(name,'') as name,
-        nullif(account_id,'') as account_id,
-        nullif(campaign_id,'') as campaign_id,
-        created_time,
-        nullif(effective_status,'') as effective_status
-        
-    from
-  {{ var('adsets_table') }}
+from
+    {{ var('adsets_table') }}
 
 {% endmacro %}
 
