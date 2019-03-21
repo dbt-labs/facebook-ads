@@ -4,18 +4,26 @@
 
 with creatives as (
 
-{{ fivetran_fb_ad_creatives() }}
+    {{ fivetran_fb_ad_creatives() }}
 
 ),
 
 utms as (
 
-{{fivetran_fb_url_tag()}}
+    {{fivetran_fb_url_tag()}}
+
+),
+
+final as (
+
+    select 
+        * 
+
+    from creatives
+    left join utms using (creative_id)
 
 )
 
-select 
-* 
-from creatives
-left join utms on utms.creative_id = creatives.id
+select * from final
+
 {% endif %}

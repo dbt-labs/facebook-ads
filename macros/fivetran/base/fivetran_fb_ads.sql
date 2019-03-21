@@ -12,7 +12,7 @@
 
 select distinct
 
-    nullif(id,'') as id,
+    nullif(id,'') as ad_id,
     nullif(account_id,'') as account_id,
     nullif(ad_set_id,'') as adset_id,
     nullif(campaign_id,'') as campaign_id,
@@ -31,7 +31,7 @@ from
 
 select distinct
 
-    id as id,
+    id as ad_id,
     account_id as account_id,
     ad_set_id as adset_id,
     campaign_id as campaign_id,

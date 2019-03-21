@@ -9,7 +9,7 @@
 
 select
 
-    nullif(id,'') as id,
+    nullif(id,'') as campaign_id,
     nullif(name,'') as name
 
 from
@@ -21,7 +21,7 @@ from
 
 select
 
-    id as id,
+    id as campaign_id,
     nullif(name,'') as name
 
 from

@@ -38,12 +38,12 @@ with ads as (
         adsets.name as adset_name
     from insights
     left outer join ads
-        on insights.ad_id = ads.id
+        on insights.ad_id = ads.ad_id
         and insights.date_day >= date_trunc('day', ads.effective_from)::date
         and (insights.date_day < date_trunc('day', ads.effective_to)::date or ads.effective_to is null)
-    left outer join creatives on ads.creative_id = creatives.id
-    left outer join campaigns on campaigns.id = insights.campaign_id
-    left outer join adsets on adsets.id = insights.adset_id
+    left outer join creatives on ads.creative_id = creatives.creative_id
+    left outer join campaigns on campaigns.campaign_id = insights.campaign_id
+    left outer join adsets on adsets.adset_id = insights.adset_id
 --these have to be an outer join because while the stitch integration goes
 --back in time for the core reporting tables (insights, etc), it doesn't go back
 --in time for the lookup tables. so there are actually lots of ad_ids that don't

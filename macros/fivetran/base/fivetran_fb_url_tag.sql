@@ -23,7 +23,7 @@ pivot as (
     
     select 
 
-        creative_id as creative_id,
+        creative_id,
     
         {% for key_value in [
         ['affcode','url_host'],
@@ -53,19 +53,24 @@ pivot as (
 
     from base
 
+),
+
+final as (
+
+    select 
+        creative_id,
+        url_host,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        utm_content,
+        utm_term
+
+    from pivot
+    {{dbt_utils.group_by(7)}}
 )
 
-select 
-creative_id,
-url_host,
-utm_source,
-utm_medium,
-utm_campaign,
-utm_content,
-utm_term
-from pivot
-{{dbt_utils.group_by(7)}}
-
+select * from final
 
 {% endmacro %}
 
@@ -89,7 +94,7 @@ pivot as (
     
     select 
 
-        creative_id as creative_id,
+        creative_id,
     
         {% for key_value in [
         ['affcode','url_host'],
@@ -118,18 +123,24 @@ pivot as (
 
     from base
 
+),
+
+final as (
+
+    select 
+        creative_id,
+        url_host,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        utm_content,
+        utm_term
+
+    from pivot
+    {{dbt_utils.group_by(7)}}
+
 )
 
-select 
-creative_id,
-url_host,
-utm_source,
-utm_medium,
-utm_campaign,
-utm_content,
-utm_term
-from pivot
-{{dbt_utils.group_by(7)}}
-
+select * from final
 
 {% endmacro %}

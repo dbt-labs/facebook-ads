@@ -11,7 +11,7 @@ with base as (
 
     select
 
-        id,
+        id as creative_id,
         coalesce(page_link,template_page_link) as url,
         coalesce(page_link,template_page_link) as base_url,
         '/' || split_part(split_part(split_part(coalesce(page_link,template_page_link), '//', 2), '/', 2), '?', 1) as url_path,
@@ -31,7 +31,7 @@ with base as (
 
     select
 
-        id,
+        id as creative_id,
         coalesce(page_link,template_page_link) as url,
         coalesce(page_link,template_page_link) as base_url,
         '/' || parse_url(coalesce(page_link,template_page_link))['path']::varchar as url_path

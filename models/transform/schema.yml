@@ -13,7 +13,7 @@ models:
     - unique
 - name: fb_adsets_xf
   columns:
-  - name: id
+  - name: adset_id
     tests:
     - not_null
     - unique
