@@ -39,7 +39,7 @@ from
 select
     date_start::date as date_day,
     account_id,
-    account_name as account_name,
+    account_name,
     ad_id,
     adset_id,
     campaign_id,
@@ -49,7 +49,7 @@ select
     spend,
     frequency,
     reach,
-    objective as objective,
+    objective,
     canvas_avg_view_percent,
     canvas_avg_view_time,
     inline_link_clicks,

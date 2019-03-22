@@ -10,7 +10,6 @@ data-paths: ["data"]       # load CSVs from this directory with `dbt seed`
 
 models:
   facebook_ads:
-    stitch:
       vars:
         etl:                                   #stitch or fivetran
         ads_table:                             #table

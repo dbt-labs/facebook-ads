@@ -32,9 +32,9 @@ from
 select distinct
 
     id as ad_id,
-    account_id as account_id,
+    account_id,
     ad_set_id as adset_id,
-    campaign_id as campaign_id,
+    campaign_id,
     nullif(name,'') as name,
     creative_id::bigint as creative_id,
     created_time as created_at,

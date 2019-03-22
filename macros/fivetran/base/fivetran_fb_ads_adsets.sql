@@ -27,8 +27,8 @@ select
 
     id as adset_id,
     nullif(name,'') as name,
-    account_id as account_id,
-    campaign_id as campaign_id,
+    account_id,
+    campaign_id,
     created_time,
     nullif(effective_status,'') as effective_status
 
