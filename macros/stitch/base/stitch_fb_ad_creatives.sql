@@ -58,16 +58,30 @@ from splits
 
 with base as (
 
-    select
+    select * from {{ var('ad_creatives_table') }}
 
+),
+
+child_links as (
+    
+    select * from {{ var('stitch_fb_ad_creatives_child_links') }}
+    
+),
+
+links_joined as (
+    
+    select
+    
         id,
         lower(coalesce(
-          nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
-          nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
-          nullif(object_story_spec['link_data']['link']::varchar, '')
+            nullif(child_link, ''),
+            nullif(object_story_spec:link_data:call_to_action:value:link::varchar, ''),
+            nullif(object_story_spec:video_data:call_to_action:value:link::varchar, ''),
+            nullif(object_story_spec:link_data:link::varchar, '')
         )) as url
-
-    from {{ var('ad_creatives_table') }}
+        
+    from base
+    left join child_links using (id)
 
 ),
 
@@ -75,8 +89,7 @@ parsed as (
 
     select
     
-        id,
-        url,
+        links_joined.*,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
         '/' || {{ dbt_utils.get_url_path('url') }} as url_path,
