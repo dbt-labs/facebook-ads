@@ -30,7 +30,6 @@ select
 from
     {{ var('ads_insights_table') }}
 
-
 {% endmacro %}
 
 
@@ -57,5 +56,6 @@ select
     unique_inline_link_clicks
 
 from {{ var('ads_insights_table') }}
+
 
 {% endmacro %}
