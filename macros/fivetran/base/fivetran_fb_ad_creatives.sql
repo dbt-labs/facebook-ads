@@ -14,13 +14,24 @@ with base as (
         id as creative_id,
         coalesce(page_link,template_page_link) as url,
         coalesce(page_link,template_page_link) as base_url,
-        '/' || split_part(split_part(split_part(coalesce(page_link,template_page_link), '//', 2), '/', 2), '?', 1) as url_path,
+        '/' || {{ dbt_utils.get_url_path('coalesce(page_link,template_page_link)') }} as url_path,
+        row_number() over (partition by creative_id, page_link order by _FIVETRAN_SYNCED desc) as row_num
 
     from {{ var('ad_creatives_table') }}
 
+),
+
+final as (
+
+    select 
+        * 
+
+    from base 
+    where row_num = 1
+
 )
 
-    select * from base
+select * from final
 
 {% endmacro %}
 
@@ -34,13 +45,23 @@ with base as (
         id as creative_id,
         coalesce(page_link,template_page_link) as url,
         coalesce(page_link,template_page_link) as base_url,
-        '/' || parse_url(coalesce(page_link,template_page_link))['path']::varchar as url_path
+        '/' || {{ dbt_utils.get_url_path('coalesce(page_link,template_page_link)') }} as url_path,
+        row_number() over (partition by creative_id, page_link order by _FIVETRAN_SYNCED desc) as row_num
 
     from {{ var('ad_creatives_table') }}
-    group by 1,2,3,4
+
+),
+
+final as (
+
+    select 
+        * 
+
+    from base 
+    where row_num = 1
 
 )
 
-select * from base
+select * from final
 
 {% endmacro %}

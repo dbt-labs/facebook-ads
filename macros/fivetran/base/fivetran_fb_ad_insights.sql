@@ -7,7 +7,8 @@
 
 {% macro default__fivetran_fb_ad_insights() %}
 
-with final as (
+with base as (
+
     select
 
         date::date as date_day,
@@ -27,10 +28,21 @@ with final as (
         canvas_avg_view_time,
         inline_link_clicks,
         inline_post_engagement,
-        unique_inline_link_clicks
+        unique_inline_link_clicks,
+        row_number() over (partition by date_day, ad_id order by _FIVETRAN_SYNCED desc) as row_num
   
     from
         {{ var('ads_insights_table') }}
+),
+
+final as (
+
+    select 
+        * 
+
+    from base 
+    where row_num = 1
+
 )
 
 select * from final

@@ -7,7 +7,7 @@
 
 {% macro default__fivetran_fb_ads_campaigns() %}
 
-select
+select distinct
 
     nullif(id,'') as campaign_id,
     nullif(name,'') as name
@@ -19,7 +19,7 @@ from
 
 {% macro snowflake__fivetran_fb_ads_campaigns() %}
 
-select
+select distinct
 
     id as campaign_id,
     nullif(name,'') as name
