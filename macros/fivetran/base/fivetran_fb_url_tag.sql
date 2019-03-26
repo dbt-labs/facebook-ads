@@ -6,17 +6,26 @@
 
 {% macro default__fivetran_fb_url_tag() %}
 
+{% set utm_key_value_pairs={
+"affcode": "url_host",
+"utm_source": "utm_source",
+"utm_medium": "utm_medium",
+"utm_campaign": "utm_campaign",
+"utm_content": "utm_content",
+"utm_term": "utm_term"
+} %}
+
 with base as (
     
-select distinct
-    type,
-    key,
-    creative_id,
-    value
+    select
+        type,
+        key,
+        creative_id,
+        value
 
-from
-    {{ var('url_tag_table') }}
-  
+    from
+        {{ var('url_tag_table') }}
+
 ),
 
 pivot as (
@@ -25,14 +34,7 @@ pivot as (
 
         creative_id,
     
-        {% for key, value in {
-        "affcode": "url_host",
-        "utm_source": "utm_source",
-        "utm_medium": "utm_medium",
-        "utm_campaign": "utm_campaign",
-        "utm_content": "utm_content",
-        "utm_term": "utm_term"
-        }.items()%}
+        {% for key, value in utm_key_value_pairs.items()%}
 
             first_value(
                 case 
@@ -40,11 +42,7 @@ pivot as (
                     else null  
                 end
 
-                {% if target.type == 'snowflake' %}
-                ) ignore nulls 
-                {% else %}
-                ignore nulls )
-                {% endif %}
+                {{facebook_ads.ignore_nulls()}}
 
             over (
                 partition by creative_id
@@ -63,7 +61,7 @@ pivot as (
 
 final as (
 
-    select 
+    select distinct
         creative_id,
         url_host,
         utm_source,
@@ -73,7 +71,7 @@ final as (
         utm_term
 
     from pivot
-    {{dbt_utils.group_by(7)}}
+
 )
 
 select * from final
