@@ -30,7 +30,7 @@ links_joined as (
             nullif(child_link, ''),
             nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
             nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
-            nullif(object_story_spec:link_data:link::varchar, '')
+            nullif(object_story_spec['link_data']['link']::varchar, '')
         )) as url
         
     from base
