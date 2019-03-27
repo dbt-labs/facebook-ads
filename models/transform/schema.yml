@@ -6,14 +6,18 @@ models:
     tests:
     - not_null
     - unique
+  - name: ad_id
+    tests:
+    - not_null
 - name: fb_ad_insights_xf
   columns:
   - name: id
     tests:
+    - not_null
     - unique
 - name: fb_adsets_xf
   columns:
-  - name: id
+  - name: adset_id
     tests:
     - not_null
     - unique
