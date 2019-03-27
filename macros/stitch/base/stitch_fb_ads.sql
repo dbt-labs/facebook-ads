@@ -12,7 +12,7 @@
 
 select distinct
 
-    nullif(id,'') as id,
+    nullif(id,'') as ad_id,
     nullif(account_id,'') as account_id,
     nullif(adset_id,'') as adset_id,
     nullif(campaign_id,'') as campaign_id,
@@ -30,7 +30,7 @@ from {{ var('ads_table') }}
 
 select distinct
 
-    nullif(id,'') as id,
+    nullif(id,'') as ad_id,
     nullif(account_id,'') as account_id,
     nullif(adset_id,'') as adset_id,
     nullif(campaign_id,'') as campaign_id,

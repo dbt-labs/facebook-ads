@@ -11,7 +11,7 @@ with base as (
 
     select
     
-        id,
+        id as creative_id,
         lower(nullif(url_tags, '')) as url_tags,
         lower(coalesce(
           nullif(object_story_spec__link_data__call_to_action__value__link, ''),
