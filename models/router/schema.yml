@@ -22,7 +22,6 @@ models:
         to: ref('fb_ad_creatives')
   - name: ad_id
     tests:
-    - unique
     - not_null
 - name: fb_ad_insights
   columns:
@@ -31,7 +30,6 @@ models:
     - not_null
   - name: campaign_id
     tests:
-    - unique
     - not_null
     - relationships:
         field: campaign_id
