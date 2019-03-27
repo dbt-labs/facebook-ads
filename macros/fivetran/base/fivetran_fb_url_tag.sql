@@ -28,9 +28,9 @@ with base as (
 
 ),
 
-pivot as (
+final as (
     
-    select 
+    select distinct
 
         creative_id,
     
@@ -56,21 +56,6 @@ pivot as (
         {% endfor %}
 
     from base
-
-),
-
-final as (
-
-    select distinct
-        creative_id,
-        url_host,
-        utm_source,
-        utm_medium,
-        utm_campaign,
-        utm_content,
-        utm_term
-
-    from pivot
 
 )
 

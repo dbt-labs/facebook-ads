@@ -14,41 +14,6 @@ with base as (
 
     select distinct
     
-        nullif(id,'') as ad_id,
-        nullif(account_id,'') as account_id,
-        nullif(ad_set_id,'') as adset_id,
-        nullif(campaign_id,'') as campaign_id,
-        nullif(name,'') as name,
-        nullif(creative_id,'') as creative_id,
-        created_time as created_at,
-        updated_time as updated_at,
-        row_number() over (partition by ad_id, updated_at order by _FIVETRAN_SYNCED desc) as row_num
-    
-    from
-    {{ var('ads_table') }}
-),
-
-final as (
-
-    select 
-        * 
-
-    from base 
-    where row_num = 1
-
-)
-
-select * from final
-
-{% endmacro %}
-
-
-{% macro snowflake__fivetran_fb_ads() %}
-
-with base as (
-
-    select distinct
-    
         id as ad_id,
         account_id,
         ad_set_id as adset_id,
