@@ -2,7 +2,13 @@ version: 2
 models:
 - name: fb_ad_creatives
   columns:
-  - name: id
+  - name: creative_id
+    tests:
+    - not_null
+    - unique
+- name: fb_ads_adsets
+  columns:
+  - name: adset_id
     tests:
     - not_null
     - unique
@@ -12,9 +18,9 @@ models:
     tests:
     - not_null
     - relationships:
-        field: id
+        field: creative_id
         to: ref('fb_ad_creatives')
-  - name: id
+  - name: ad_id
     tests:
     - not_null
 - name: fb_ad_insights
@@ -26,11 +32,11 @@ models:
     tests:
     - not_null
     - relationships:
-        field: id
+        field: campaign_id
         to: ref('fb_campaigns')
 - name: fb_campaigns
   columns:
-  - name: id
+  - name: campaign_id
     tests:
     - not_null
     - unique
