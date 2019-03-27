@@ -26,7 +26,7 @@ with base as (
 
     select
     
-        id,
+        creative_id,
         url,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         --this is a strange thing to have to do but it's because sometimes 
@@ -60,7 +60,7 @@ with base as (
 
     select
 
-        id,
+        id as creative_id,
         lower(coalesce(
           nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
           nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
@@ -75,7 +75,7 @@ parsed as (
 
     select
     
-        id,
+        creative_id,
         url,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
