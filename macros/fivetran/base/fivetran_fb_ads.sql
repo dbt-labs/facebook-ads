@@ -12,7 +12,7 @@
 
 with base as (
 
-    select distinct
+    select
     
         id as ad_id,
         account_id,
