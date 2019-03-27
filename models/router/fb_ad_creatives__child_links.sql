@@ -1,1 +1,0 @@
-{{ stitch_fb_ad_creatives__child_links() }}
