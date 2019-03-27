@@ -8,10 +8,10 @@
 {% macro default__stitch_fb_ads_campaigns() %}
 
 select
-    nullif(id,'') as campaign_id,
-    nullif(name,'') as name
 
-from
-    {{ var('campaigns_table') }}
+    nullif(id,'') as id,
+    nullif(name,'') as name
+    
+from {{ var('campaigns_table') }}
 
 {% endmacro %}

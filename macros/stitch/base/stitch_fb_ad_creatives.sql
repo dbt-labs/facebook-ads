@@ -11,7 +11,7 @@ with base as (
 
     select
     
-        id as creative_id,
+        id,
         lower(nullif(url_tags, '')) as url_tags,
         lower(coalesce(
           nullif(object_story_spec__link_data__call_to_action__value__link, ''),
@@ -26,7 +26,7 @@ with base as (
 
     select
     
-        creative_id,
+        id,
         url,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         --this is a strange thing to have to do but it's because sometimes 
@@ -60,11 +60,11 @@ with base as (
 
     select
 
-        id as creative_id,
+        id,
         lower(coalesce(
-            nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
-            nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
-            nullif(object_story_spec['link_data']['link']::varchar, '')
+          nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
+          nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
+          nullif(object_story_spec['link_data']['link']::varchar, '')
         )) as url
 
     from {{ var('ad_creatives_table') }}
@@ -75,7 +75,7 @@ parsed as (
 
     select
     
-        creative_id,
+        id,
         url,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,

@@ -18,10 +18,10 @@
 with base as (
     
     select
-        type,
-        key,
+        nullif(type,'') as type,
+        nullif(key,'') as key,
         creative_id,
-        value
+        nullif(value,'') as value
 
     from
         {{ var('url_tag_table') }}
