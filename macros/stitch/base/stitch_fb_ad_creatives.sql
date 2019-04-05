@@ -23,7 +23,7 @@ links_joined as (
     
     select
     
-        id,
+        id as creative_id,
         lower(nullif(url_tags, '')) as url_tags,
         lower(coalesce(
           nullif(child_link, ''),
@@ -82,11 +82,7 @@ child_links as (
     
 ),
 
-links_joined as (
-    
-    select
-    
-        id,
+        id as creative_id,
         lower(coalesce(
             nullif(child_link, ''),
             nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
