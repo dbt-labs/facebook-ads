@@ -33,7 +33,8 @@ links_joined as (
         )) as url
     
     from base
-    left join child_links using (id)
+    left join child_links 
+        on base.id = child_links.creative_id
     
 ), 
 
@@ -85,13 +86,14 @@ child_links as (
         id as creative_id,
         lower(coalesce(
             nullif(child_link, ''),
-            nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
-            nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
-            nullif(object_story_spec['link_data']['link']::varchar, '')
+            nullif(base.object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
+            nullif(base.object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
+            nullif(base.object_story_spec['link_data']['link']::varchar, '')
         )) as url
         
     from base
-    left join child_links using (id)
+    left join child_links 
+        on base.id = child_links.creative_id
 
 ),
 

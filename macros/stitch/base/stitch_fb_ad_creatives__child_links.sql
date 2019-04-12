@@ -22,7 +22,7 @@ child_attachment_links as (
     
     select
     
-        _sdc_source_key_id as id,
+        _sdc_source_key_id as creative_id,
         _sdc_batched_at,
         link as child_link
         
@@ -35,9 +35,9 @@ aggregated as (
     
     select distinct
     
-        id,
+        creative_id,
         first_value(child_link) over (
-            partition by id
+            partition by creative_id
             order by _sdc_batched_at
             rows between unbounded preceding and unbounded following
         ) as child_link
@@ -82,7 +82,7 @@ child_attachment_links as (
 aggregated as (
     
     select distinct
-        id,
+        id as creative_id,
         
         {% for field in fields %}
         first_value({{ field }}) over (partition by id 
