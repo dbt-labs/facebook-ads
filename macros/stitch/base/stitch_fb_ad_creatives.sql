@@ -43,11 +43,26 @@ select
     *,
     {{ dbt_utils.get_url_host('url') }} as url_host,
     '/' || {{dbt_utils.get_url_path('url') }} as url_path,
-    {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
-    {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
-    {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
-    {{ dbt_utils.get_url_parameter('url', 'utm_content') }} as utm_content,
-    {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term
+    coalesce (
+        {{ dbt_utils.get_url_parameter('url_tags', 'utm_source') }},
+        {{ dbt_utils.get_url_parameter('url', 'utm_source') }} 
+    ) as utm_source,
+    coalesce (
+        {{ dbt_utils.get_url_parameter('url_tags', 'utm_medium') }},
+        {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} 
+    ) as utm_medium,
+    coalesce (
+        {{ dbt_utils.get_url_parameter('url_tags', 'utm_campaign') }},
+        {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} 
+    ) as utm_campaign,
+    coalesce (
+        {{ dbt_utils.get_url_parameter('url_tags', 'utm_content') }},
+        {{ dbt_utils.get_url_parameter('url', 'utm_content') }} 
+    ) as utm_content,
+    coalesce (
+        {{ dbt_utils.get_url_parameter('url_tags', 'utm_term') }},
+        {{ dbt_utils.get_url_parameter('url', 'utm_term') }} 
+    ) as utm_term
     
 from splits
 
@@ -65,7 +80,9 @@ with base as (
           nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
           nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
           nullif(object_story_spec['link_data']['link']::varchar, '')
-        )) as url
+      )) as url,
+      
+      url_tags
 
     from {{ var('ad_creatives_table') }}
 
@@ -80,11 +97,26 @@ parsed as (
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
         '/' || {{ dbt_utils.get_url_path('url') }} as url_path,
-        {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
-        {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
-        {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
-        {{ dbt_utils.get_url_parameter('url', 'utm_content') }} as utm_content,
-        {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term
+        coalesce (
+        {{ dbt_utils.get_url_parameter('url_tags', 'utm_source') }},
+        {{ dbt_utils.get_url_parameter('url', 'utm_source') }} 
+        ) as utm_source,
+        coalesce (
+            {{ dbt_utils.get_url_parameter('url_tags', 'utm_medium') }},
+            {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} 
+        ) as utm_medium,
+        coalesce (
+            {{ dbt_utils.get_url_parameter('url_tags', 'utm_campaign') }},
+            {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} 
+        ) as utm_campaign,
+        coalesce (
+            {{ dbt_utils.get_url_parameter('url_tags', 'utm_content') }},
+            {{ dbt_utils.get_url_parameter('url', 'utm_content') }} 
+        ) as utm_content,
+        coalesce (
+            {{ dbt_utils.get_url_parameter('url_tags', 'utm_term') }},
+            {{ dbt_utils.get_url_parameter('url', 'utm_term') }} 
+        ) as utm_term
         
     from base 
 
