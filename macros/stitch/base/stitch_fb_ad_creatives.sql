@@ -81,26 +81,24 @@ child_links as (
     
 ),
 
+links_joined as (
+    
+    select
+
         id as creative_id,
         lower(coalesce(
             nullif(child_link, ''),
             nullif(base.object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
             nullif(base.object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
             nullif(base.object_story_spec['link_data']['link']::varchar, '')
-        )) as url
+        )) as url,
+        
+        url_tags
         
     from base
     left join child_links 
         on base.id = child_links.creative_id
-          nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
-          nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
-          nullif(object_story_spec['link_data']['link']::varchar, '')
-      )) as url,
-      
-      url_tags
-
-    from {{ var('ad_creatives_table') }}
-
+        
 ),
 
 parsed as (
