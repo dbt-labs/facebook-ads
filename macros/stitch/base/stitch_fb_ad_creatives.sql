@@ -42,12 +42,13 @@ splits as (
 
     select
     
-        links_joined.*,
+        links_joined.creative_id,
+        links_joined.url,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         --this is a strange thing to have to do but it's because sometimes 
         --the URL exists on the story object and we wouldn't get the appropriate 
         --UTM params here otherwise
-        coalesce(url_tags, {{ dbt_utils.split_part('url', "'?'", 2) }} ) as url_tags
+        coalesce(links_joined.url_tags, {{ dbt_utils.split_part('url', "'?'", 2) }} ) as url_tags
     
     from links_joined
 
