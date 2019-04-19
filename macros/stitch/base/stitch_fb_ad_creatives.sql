@@ -58,11 +58,8 @@ select
     splits.*,
     {{ dbt_utils.get_url_host('url') }} as url_host,
     '/' || {{dbt_utils.get_url_path('url') }} as url_path,
-    {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
-    {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
-    {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
-    {{ dbt_utils.get_url_parameter('url', 'utm_content') }} as utm_content,
-    {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term
+    
+    {{ facebook_ads.get_url_parameter() }}
     
 from splits
 
@@ -94,6 +91,14 @@ child_links as (
     from base
     left join child_links 
         on base.id = child_links.creative_id
+          nullif(object_story_spec['link_data']['call_to_action']['value']['link']::varchar, ''),
+          nullif(object_story_spec['video_data']['call_to_action']['value']['link']::varchar, ''),
+          nullif(object_story_spec['link_data']['link']::varchar, '')
+      )) as url,
+      
+      url_tags
+
+    from {{ var('ad_creatives_table') }}
 
 ),
 
@@ -102,14 +107,10 @@ parsed as (
     select
     
         links_joined.*,
-        {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
-        '/' || {{ dbt_utils.get_url_path('url') }} as url_path,
-        {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
-        {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
-        {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
-        {{ dbt_utils.get_url_parameter('url', 'utm_content') }} as utm_content,
-        {{ dbt_utils.get_url_parameter('url', 'utm_term') }} as utm_term
+        '/' || {{dbt_utils.get_url_path('url') }} as url_path,
+        
+        {{ facebook_ads.get_url_parameter() }}
         
     from links_joined 
 
