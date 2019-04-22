@@ -76,6 +76,9 @@ parsed as (
     
         creative_id,
         url,
+        {{ dbt_utils.get_url_host('url') }} as url_host,
+        '/' || {{dbt_utils.get_url_path('url') }} as url_path,
+        
         {{ facebook_ads.get_url_parameter() }}
         
     from base 
