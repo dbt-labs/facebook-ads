@@ -20,7 +20,7 @@ with base as (
         )) as url
 
     from
-    {{ var('ad_creatives_table') }}
+    {{ stitch_base_table(var('ad_creatives_table')) }}
 
 ), splits as (
 
