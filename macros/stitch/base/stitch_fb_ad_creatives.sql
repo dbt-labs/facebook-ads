@@ -42,7 +42,7 @@ select
 
     *,
     {{ dbt_utils.get_url_host('url') }} as url_host,
-    '/' || {{dbt_utils.get_url_path('url') }} as url_path,
+    {{ dbt_utils.concat(["'/'", dbt_utils.get_url_path('url')]) }} as url_path,
     {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
     {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
     {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
@@ -79,7 +79,7 @@ parsed as (
         url,
         {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
-        '/' || {{ dbt_utils.get_url_path('url') }} as url_path,
+        {{ dbt_utils.concat(['/', dbt_utils.get_url_path('url')]) }} as url_path,
         {{ dbt_utils.get_url_parameter('url', 'utm_source') }} as utm_source,
         {{ dbt_utils.get_url_parameter('url', 'utm_medium') }} as utm_medium,
         {{ dbt_utils.get_url_parameter('url', 'utm_campaign') }} as utm_campaign,
