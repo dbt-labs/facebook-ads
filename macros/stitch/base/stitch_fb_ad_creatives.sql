@@ -14,9 +14,9 @@ with base as (
         id as creative_id,
         lower(nullif(url_tags, '')) as url_tags,
         lower(coalesce(
-          nullif(object_story_spec.link_data.call_to_action.value.link, ''),
-          nullif(object_story_spec.video_data.call_to_action.value.link, ''),
-          nullif(object_story_spec.link_data.link, '')
+          nullif({{ nested_field('object_story_spec', ['link_data', 'call_to_action', 'value', 'link']) }}, ''),
+          nullif({{ nested_field('object_story_spec', ['video_data', 'call_to_action', 'value', 'link']) }}, ''),
+          nullif({{ nested_field('object_story_spec', ['link_data', 'link']) }}, '')
         )) as url
     
     from
