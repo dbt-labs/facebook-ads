@@ -9,7 +9,36 @@
 
 with base as (
 
-    select * from {{ var('ad_creatives_table') }}
+    select
+
+        id as creative_id,
+        lower(nullif(url_tags, '')) as url_tags,
+        lower(coalesce(
+          nullif(object_story_spec.link_data.call_to_action.value.link, ''),
+          nullif(object_story_spec.video_data.call_to_action.value.link, ''),
+          nullif(object_story_spec.link_data.link, '')
+        )) as url
+
+    from
+    {{ var('ad_creatives_table') }}
+
+), splits as (
+
+    select
+
+        creative_id,
+        url,
+        {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
+        --this is a strange thing to have to do but it's because sometimes
+        --the URL exists on the story object and we wouldn't get the appropriate
+        --UTM params here otherwise
+        coalesce(url_tags, {{ dbt_utils.split_part('url', "'?'", 2) }} ) as url_tags
+
+    from base
+
+)
+
+select
 
 ),
 
