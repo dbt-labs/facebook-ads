@@ -16,6 +16,6 @@ select
     created_time,
     nullif(effective_status,'') as effective_status
     
-from {{ var('adsets_table') }}
+from {{ stitch_base_table(var('adsets_table')) }}
 
 {% endmacro %}

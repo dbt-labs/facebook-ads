@@ -9,7 +9,7 @@
 
 select
 
-    date_start::date as date_day,
+    {{ dbt_utils.date_trunc('day', 'date_start') }} as date_day,
     nullif(account_id,'') as account_id,
     nullif(account_name,'') as account_name,
     nullif(ad_id,'') as ad_id,
@@ -28,7 +28,7 @@ select
     inline_post_engagement,
     unique_inline_link_clicks
 
-from {{ var('ads_insights_table') }}
+from {{ stitch_base_table(var('ads_insights_table'), ['campaign_id', 'adset_id', 'ad_id', 'date_start']) }}
 
 
 {% endmacro %}

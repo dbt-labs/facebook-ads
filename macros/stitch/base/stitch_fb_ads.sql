@@ -17,11 +17,11 @@ select distinct
     nullif(adset_id,'') as adset_id,
     nullif(campaign_id,'') as campaign_id,
     nullif(name,'') as name,
-    nullif(creative__id,'') as creative_id,
+    nullif({{ nested_field('creative', ['id']) }},'') as creative_id,
     created_time as created_at,
     updated_time as updated_at
     
-from {{ var('ads_table') }}
+from {{ stitch_base_table(var('ads_table')) }}
 
 {% endmacro %}
 

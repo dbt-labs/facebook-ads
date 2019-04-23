@@ -14,13 +14,13 @@ with base as (
         id as creative_id,
         lower(nullif(url_tags, '')) as url_tags,
         lower(coalesce(
-          nullif(object_story_spec__link_data__call_to_action__value__link, ''),
-          nullif(object_story_spec__video_data__call_to_action__value__link, ''),
-          nullif(object_story_spec__link_data__link, '')
+          nullif({{ nested_field('object_story_spec', ['link_data', 'call_to_action', 'value', 'link']) }}, ''),
+          nullif({{ nested_field('object_story_spec', ['video_data', 'call_to_action', 'value', 'link']) }}, ''),
+          nullif({{ nested_field('object_story_spec', ['link_data', 'link']) }}, '')
         )) as url
     
     from
-    {{ var('ad_creatives_table') }}
+    {{ stitch_base_table(var('ad_creatives_table')) }}
 
 ), splits as (
 
