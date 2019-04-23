@@ -41,8 +41,8 @@ with ads as (
     from insights
     left outer join ads
         on insights.ad_id = ads.ad_id
-        and insights.date_day >= date_trunc('day', ads.effective_from)::date
-        and (insights.date_day < date_trunc('day', ads.effective_to)::date or ads.effective_to is null)
+        and insights.date_day >= {{ dbt_utils.date_trunc('day', 'ads.effective_from') }}
+        and (insights.date_day < {{ dbt_utils.date_trunc('day', 'ads.effective_to') }} or ads.effective_to is null)
     left outer join creatives on ads.creative_id = creatives.creative_id
     left outer join campaigns on campaigns.campaign_id = insights.campaign_id
     left outer join adsets on adsets.adset_id = insights.adset_id
