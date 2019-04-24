@@ -76,6 +76,7 @@ parsed as (
     
         creative_id,
         url,
+        {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
         '/' || {{dbt_utils.get_url_path('url') }} as url_path,
         
