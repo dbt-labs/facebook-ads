@@ -6,11 +6,13 @@ models:
     tests:
     - not_null
     - unique
-- name: fb_ads_adsets
+- name: fb_ad_creatives__child_links
   columns:
-  - name: adset_id
+  - name: creative_id
     tests:
-    - not_null
+    - relationships:
+        field: creative_id
+        to: ref('fb_ad_creatives')
 - name: fb_ads
   columns:
   - name: creative_id

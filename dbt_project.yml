@@ -11,10 +11,13 @@ data-paths: ["data"]       # load CSVs from this directory with `dbt seed`
 models:
   facebook_ads:
       vars:
+
         etl:                                   #stitch or fivetran
         ads_table:                             #table
         ad_creatives_table:                    #table
         adsets_table:                          #table
         campaigns_table:                       #table
         ads_insights_table:                    #table
+        ad_creatives__child_links_table:       #table -- disable if on snowflake
+
         url_tag_table:                         #only for fivetran
