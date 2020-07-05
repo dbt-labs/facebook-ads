@@ -26,12 +26,12 @@ is info about Stitch's Facebook Ads connector.
 [Here](https://fivetran.com/docs/applications/facebook-ad-account) 
 is info about Fivetran's Facebook Ad Account connector.
 
-The Insights connector is used to pull in the fb_ad_insights table.
+The Ad Account connector is used to pull in all tables except the insights table.
 
 [Here](https://fivetran.com/docs/applications/facebook-ads-insights) 
 is info about Fivetran's Facebook Ad Insights connector.
 
-The Ad Account connector is used to pull in all tables except the insights table.
+The Insights connector is used to pull in the fb_ad_insights table.
 
 ### Contributing
 Additional contributions to this repo are very welcome! Check out [this post](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package. All PRs should only include functionality that is contained within all Segment deployments; no implementation-specific details should be included.
