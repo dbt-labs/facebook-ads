@@ -46,7 +46,7 @@ final as (
 
             over (
                 partition by creative_id
-                order by key
+                order by key rows between current row and unbounded following
             ) as {{value}}
 
             {% if not loop.last %}    
