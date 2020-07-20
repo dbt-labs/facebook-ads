@@ -1,5 +1,8 @@
 name: 'facebook_ads'
-version: '1.0'
+version: '0.5.0'
+config-version: 2
+
+require-dbt-version: [">=0.17.0"]
 
 source-paths: ["models"]   # paths with source code to compile
 analysis-paths: ["analysis"] # path with analysis files which are compiled, but not run
@@ -8,16 +11,18 @@ clean-targets: ["target"]  # directories removed by the clean task
 test-paths: ["test"]       # where to store test results
 data-paths: ["data"]       # load CSVs from this directory with `dbt seed`
 
+
+vars:
+
+  etl:                                   #stitch or fivetran
+  ads_table:                             #table
+  ad_creatives_table:                    #table
+  adsets_table:                          #table
+  campaigns_table:                       #table
+  ads_insights_table:                    #table
+  ad_creatives__child_links_table:       #table -- disable if on snowflake
+
+  url_tag_table:                         #only for fivetran
+  
 models:
   facebook_ads:
-      vars:
-
-        etl:                                   #stitch or fivetran
-        ads_table:                             #table
-        ad_creatives_table:                    #table
-        adsets_table:                          #table
-        campaigns_table:                       #table
-        ads_insights_table:                    #table
-        ad_creatives__child_links_table:       #table -- disable if on snowflake
-
-        url_tag_table:                         #only for fivetran
