@@ -21,8 +21,8 @@ with ads as (
 ), final as (
 
     select
-    
-        {{ dbt_utils.surrogate_key('insights.date_day', 'insights.ad_id') }} as id,
+
+        {{ dbt_utils.surrogate_key(['insights.date_day', 'insights.ad_id']) }} as id,
         insights.*,
         creatives.base_url,
         creatives.url,

@@ -1,6 +1,6 @@
 {% macro stitch_fb_ads_adsets() %}
 
-    {{ adapter_macro('facebook_ads.stitch_fb_ads_adsets') }}
+    {{ adapter.dispatch('stitch_fb_ads_adsets') }}
 
 {% endmacro %}
 

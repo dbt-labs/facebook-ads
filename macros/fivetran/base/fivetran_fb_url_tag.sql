@@ -1,6 +1,6 @@
 {% macro fivetran_fb_url_tag() %}
 
-    {{adapter_macro('facebook_ads.fivetran_fb_url_tag')}}
+    {{adapter.dispatch('fivetran_fb_url_tag', packages=facebook_ads._get_facebook_ads_namespaces())() }}
 
 {% endmacro %}
 
@@ -16,7 +16,7 @@
 } %}
 
 with base as (
-    
+
     select
         nullif(type,'') as type,
         nullif(key,'') as key,
@@ -29,30 +29,30 @@ with base as (
 ),
 
 final as (
-    
+
     select distinct
 
         creative_id,
-    
+
         {% for key, value in utm_key_value_pairs.items()%}
 
             first_value(
-                case 
+                case
                     when key = '{{key}}' then value
-                    else null  
+                    else null
                 end
 
                 {{facebook_ads.ignore_nulls()}}
 
             over (
                 partition by creative_id
-                order by key 
+                order by key
                 rows between unbounded preceding and unbounded following
             ) as {{value}}
 
-            {% if not loop.last %}    
+            {% if not loop.last %}
             ,
-            {% endif %} 
+            {% endif %}
 
         {% endfor %}
 

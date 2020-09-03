@@ -1,6 +1,6 @@
 {% macro nested_field(field, subfields) %}
 
-    {{ adapter_macro('facebook_ads.nested_field', field, subfields) }}
+    {{ adapter.dispatch('nested_field', packages=facebook_ads._get_facebook_ads_namespaces())(field, subfields) }}
 
 {% endmacro %}
 
@@ -21,6 +21,6 @@
 
 {% macro snowflake__nested_field(field, subfields) %}
 
-    {{field ~ "['" ~ subfields|join("']['") ~ "']" }} 
+    {{field ~ "['" ~ subfields|join("']['") ~ "']" }}
 
 {% endmacro %}

@@ -1,6 +1,6 @@
 {% macro fivetran_fb_ad_creatives() %}
 
-    {{ adapter_macro('facebook_ads.fivetran_fb_ad_creatives') }}
+    {{ adapter.dispatch('fivetran_fb_ad_creatives', packages=facebook_ads._get_facebook_ads_namespaces())() }}
 
 {% endmacro %}
 
@@ -22,10 +22,10 @@ with base as (
 
 final as (
 
-    select 
-        * 
+    select
+        *
 
-    from base 
+    from base
     where row_num = 1
 
 )

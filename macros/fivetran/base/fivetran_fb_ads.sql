@@ -1,6 +1,6 @@
 {% macro fivetran_fb_ads() %}
 
-    {{ adapter_macro('facebook_ads.fivetran_fb_ads') }}
+    {{ adapter.dispatch('fivetran_fb_ads', packages=facebook_ads._get_facebook_ads_namespaces())() }}
 
 {% endmacro %}
 
@@ -13,7 +13,7 @@
 with base as (
 
     select
-    
+
         id as ad_id,
         account_id,
         ad_set_id as adset_id,
@@ -23,17 +23,17 @@ with base as (
         created_time as created_at,
         updated_time as updated_at,
         row_number() over (partition by ad_id, updated_at order by _FIVETRAN_SYNCED desc) as row_num
-    
+
     from
         {{ var('ads_table') }}
 ),
 
 final as (
 
-    select 
-        * 
+    select
+        *
 
-    from base 
+    from base
     where row_num = 1
 
 )
