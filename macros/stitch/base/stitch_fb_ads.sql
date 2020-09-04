@@ -1,6 +1,6 @@
 {% macro stitch_fb_ads() %}
 
-    {{ adapter_macro('facebook_ads.stitch_fb_ads') }}
+    {{ adapter.dispatch('stitch_fb_ads', packages=facebook_ads._get_facebook_ads_namespaces())() }}
 
 {% endmacro %}
 
@@ -20,7 +20,7 @@ select distinct
     nullif(creative__id,'') as creative_id,
     created_time as created_at,
     updated_time as updated_at
-    
+
 from {{ var('ads_table') }}
 
 {% endmacro %}
@@ -38,7 +38,7 @@ select distinct
     nullif(creative['id'],'')::bigint as creative_id,
     created_time as created_at,
     updated_time as updated_at
-    
+
 from {{ var('ads_table') }}
 
 {% endmacro %}

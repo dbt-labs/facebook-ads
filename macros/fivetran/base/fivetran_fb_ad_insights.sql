@@ -1,6 +1,6 @@
 {% macro fivetran_fb_ad_insights() %}
 
-    {{ adapter_macro('facebook_ads.fivetran_fb_ad_insights') }}
+    {{ adapter.dispatch('fivetran_fb_ad_insights', packages=facebook_ads._get_facebook_ads_namespaces())() }}
 
 {% endmacro %}
 
@@ -30,17 +30,17 @@ with base as (
         inline_post_engagement,
         unique_inline_link_clicks,
         row_number() over (partition by date_day, ad_id order by _FIVETRAN_SYNCED desc) as row_num
-  
+
     from
         {{ var('ads_insights_table') }}
 ),
 
 final as (
 
-    select 
-        * 
+    select
+        *
 
-    from base 
+    from base
     where row_num = 1
 
 )

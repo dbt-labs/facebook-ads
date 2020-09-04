@@ -1,6 +1,6 @@
 {% macro fivetran_fb_ads_adsets() %}
 
-    {{ adapter_macro('facebook_ads.fivetran_fb_ads_adsets') }}
+    {{ adapter.dispatch('fivetran_fb_ads_adsets', packages=facebook_ads._get_facebook_ads_namespaces())() }}
 
 {% endmacro %}
 
@@ -9,7 +9,7 @@
 with base as (
 
     select
-    
+
         id as adset_id,
         nullif(name,'') as name,
         account_id,
@@ -24,10 +24,10 @@ with base as (
 
 final as (
 
-    select 
-        * 
+    select
+        *
 
-    from base 
+    from base
     where row_num = 1
 
 )
