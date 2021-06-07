@@ -1,6 +1,6 @@
 {% macro fivetran_fb_ads() %}
 
-    {{ adapter.dispatch('fivetran_fb_ads', packages=facebook_ads._get_facebook_ads_namespaces())() }}
+    {{ adapter.dispatch('fivetran_fb_ads', 'facebook_ads')() }}
 
 {% endmacro %}
 
