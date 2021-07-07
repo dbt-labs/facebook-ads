@@ -14,7 +14,7 @@
 
 with base as (
 
-    select * from {{ var('ad_creatives__child_links_table', 'facebook_ads')() }}
+    select * from {{ var('ad_creatives__child_links_table') }}
 
 ),
 
