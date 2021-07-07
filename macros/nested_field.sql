@@ -1,6 +1,6 @@
 {% macro nested_field(field, subfields) %}
 
-    {{ adapter.dispatch('nested_field', packages=facebook_ads._get_facebook_ads_namespaces())(field, subfields) }}
+    {{ adapter.dispatch('nested_field', 'facebook_ads')(field, subfields) }}
 
 {% endmacro %}
 

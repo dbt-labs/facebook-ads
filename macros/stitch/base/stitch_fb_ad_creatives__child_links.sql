@@ -5,7 +5,7 @@
 
 {% macro stitch_fb_ad_creatives__child_links() %}
 
-    {{ adapter.dispatch('stitch_fb_ad_creatives__child_links', packages=facebook_ads._get_facebook_ads_namespaces())() }}
+    {{ adapter.dispatch('stitch_fb_ad_creatives__child_links', 'facebook_ads')() }}
 
 {% endmacro %}
 
@@ -14,7 +14,7 @@
 
 with base as (
 
-    select * from {{ var('ad_creatives__child_links_table', packages=facebook_ads._get_facebook_ads_namespaces())() }}
+    select * from {{ var('ad_creatives__child_links_table') }}
 
 ),
 

@@ -1,6 +1,6 @@
 {% macro stitch_fb_ad_creatives() %}
 
-    {{ adapter.dispatch('stitch_fb_ad_creatives', packages=facebook_ads._get_facebook_ads_namespaces())() }}
+    {{ adapter.dispatch('stitch_fb_ad_creatives', 'facebook_ads')() }}
 
 {% endmacro %}
 

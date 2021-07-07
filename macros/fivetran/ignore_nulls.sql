@@ -1,6 +1,6 @@
 {% macro ignore_nulls() %}
 
-    {{ adapter.dispatch('ignore_nulls', packages=facebook_ads._get_facebook_ads_namespaces())() }}
+    {{ adapter.dispatch('ignore_nulls', 'facebook_ads')() }}
 
 {% endmacro %}
 

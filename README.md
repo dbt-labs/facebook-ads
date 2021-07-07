@@ -9,12 +9,23 @@ from Facebook's API.
 # Installation Instructions
 
 [Here](https://docs.getdbt.com/docs/package-management) is some additional 
-information about packages in dbt, icnluding installation instructions. 
+information about packages in dbt, including installation instructions. 
 If you haven't already, you will need to create a `packages.yml` file in your project.
 
-You should then copy the adwords package structure from the `dbt_project.yml` in
-this repository into your project's `dbt_project.yml` file and replace the `#`
-values with the adwords table names from your warehouse.
+You should then copy these variables into your root `dbt_project.yml`, and fill in with the names of Facebook ads tables in your warehouse:
+```
+vars:
+
+  etl:                                   #stitch or fivetran
+  ads_table:                             #table
+  ad_creatives_table:                    #table
+  adsets_table:                          #table
+  campaigns_table:                       #table
+  ads_insights_table:                    #table
+  ad_creatives__child_links_table:       #table -- disable if on snowflake
+
+  url_tag_table:                         #only for fivetran
+```
 
 ## Stitch
 
