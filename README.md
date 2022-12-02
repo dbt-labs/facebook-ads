@@ -1,4 +1,7 @@
 
+> ⛔🏚️ This package is obsolete and no longer developed. Fivetran users should use [fivetran/facebook_ads](https://hub.getdbt.com/fivetran/facebook_ads/latest/) instead. 
+
+
 # Facebook Ads
 
 This package models Facebook Ads data.
