@@ -33,7 +33,7 @@ links_joined as (
         )) as url,
 
         lower(coalesce(
-            nullif(url_tags, {{ dbt_utils.split_part('url', "'?'", 2) }}), '')
+            nullif(url_tags, {{ dbt.split_part('url', "'?'", 2) }}), '')
         ) as url_tags
 
     from base
@@ -47,9 +47,9 @@ parsed as (
     select
 
         links_joined.*,
-        {{ dbt_utils.split_part('url', "'?'", 1) }} as base_url,
+        {{ dbt.split_part('url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('url') }} as url_host,
-        {{ dbt_utils.concat(["'/'", dbt_utils.get_url_path('url')]) }} as url_path,
+        {{ dbt.concat(["'/'", dbt_utils.get_url_path('url')]) }} as url_path,
         {{ facebook_ads.get_url_parameter() }}
 
     from links_joined
